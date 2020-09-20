@@ -40,6 +40,10 @@ void print_bytes(int character){
 	int i ;
 	int mask = 128;
 	for(i = 0; i < 8; i++){
+		if(character == '\0'){
+			putchar(' ');
+			continue;
+		}
 		int res = character&mask;
 		if(res)
 			putchar('1');
@@ -58,7 +62,12 @@ void print_line(char* line, int line_counter, int chars_per_line, bool in_binary
 	// for each chunk of chars_per_line characters
 	for(i = 0; i < chars_per_line; i++){
 		// reach end of line
-		if(line[i] == '\0') continue;
+		if(line[i] == '\0'){
+			// print spaces for the missing characters in the line , 
+			// in case the line is shorter than chars_per_line
+			while(++i<chars_per_line) in_binary?printf("         "):printf("   ");
+			break;
+		};
 		
 		if(in_binary)
 			print_bytes(line[i]);
