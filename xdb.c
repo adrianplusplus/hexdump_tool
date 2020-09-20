@@ -80,6 +80,7 @@ void print_line(char* line, int line_counter, int chars_per_line, bool in_binary
 		else putchar(' ');
 	}
 	
+	// TODO: print non printable character as periods
 	printf(line);
 	
 	putchar('\n');
